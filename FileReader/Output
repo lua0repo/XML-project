@@ -1,0 +1,27 @@
+Root Element: library
+Attributes: {}
+Child Elements:
+  Element: book
+    Attributes: {'id': '1'}
+    Text: None
+    Element: title
+      Attributes: {}
+      Text: The Great Gatsby
+    Element: author
+      Attributes: {}
+      Text: F. Scott Fitzgerald
+    Element: year
+      Attributes: {}
+      Text: 1925
+  Element: book
+    Attributes: {'id': '2'}
+    Text: None
+    Element: title
+      Attributes: {}
+      Text: 1984
+    Element: author
+      Attributes: {}
+      Text: George Orwell
+    Element: year
+      Attributes: {}
+      Text: 1949
