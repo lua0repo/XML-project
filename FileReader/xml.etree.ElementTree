@@ -1,0 +1,37 @@
+import xml.etree.ElementTree as ET
+
+def read_xml_file(file_path):
+    try:
+        # Parse the XML file
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+
+        # Display the contents in a user-friendly format
+        print(f"Root Element: {root.tag}")
+        print(f"Attributes: {root.attrib}")
+        print("\nChild Elements:")
+        for child in root:
+            display_element(child, level=1)
+
+    except ET.ParseError as e:
+        print(f"Error parsing XML file: {e}")
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def display_element(element, level):
+    indent = "  " * level
+    print(f"{indent}Element: {element.tag}")
+    if element.attrib:
+        print(f"{indent}  Attributes: {element.attrib}")
+    if element.text and element.text.strip():
+        print(f"{indent}  Text: {element.text.strip()}")
+    
+    for child in element:
+        display_element(child, level + 1)
+
+if __name__ == "__main__":
+    # Specify the path to your XML file
+    xml_file_path = "example.xml"  # Change this to your XML file path
+    read_xml_file(xml_file_path)
