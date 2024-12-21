@@ -1,0 +1,112 @@
+simple Python program that reads an XML file and displays its contents in a user-friendly format. This program uses the xml.etree.ElementTree module, which is part of the Python standard library, to parse the XML file.
+
+
+XML File Reader in Python
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import xml.etree.ElementTree as ET
+
+def read_xml_file(file_path):
+    try:
+        # Parse the XML file
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+
+        # Display the contents in a user-friendly format
+        print(f"Root Element: {root.tag}")
+        print(f"Attributes: {root.attrib}")
+        print("\nChild Elements:")
+        for child in root:
+            display_element(child, level=1)
+
+    except ET.ParseError as e:
+        print(f"Error parsing XML file: {e}")
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def display_element(element, level):
+    indent = "  " * level
+    print(f"{indent}Element: {element.tag}")
+    if element.attrib:
+        print(f"{indent}  Attributes: {element.attrib}")
+    if element.text and element.text.strip():
+        print(f"{indent}  Text: {element.text.strip()}")
+    
+    for child in element:
+        display_element(child, level + 1)
+
+if __name__ == "__main__":
+    # Specify the path to your XML file
+    xml_file_path = "example.xml"  # Change this to your XML file path
+    read_xml_file(xml_file_path)
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+How to Use the Program
+1. Save the Code: Copy the above code into a Python file, e.g., xml_reader.py.
+
+2. Prepare an XML File: Create an XML file named example.xml (or any name you prefer) in the same directory as your script. Here’s a sample XML content you can use:
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+<?xml version="1.0"?>
+<library>
+    <book id="1">
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <year>1925</year>
+    </book>
+    <book id="2">
+        <title>1984</title>
+        <author>George Orwell</author>
+        <year>1949</year>
+    </book>
+</library>
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+3. Run the Program: Execute the script using Python:
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+python xml_reader.py
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Output
+When you run the program, it will read the XML file and display its contents in a structured format, like this:
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+Root Element: library
+Attributes: {}
+Child Elements:
+  Element: book
+    Attributes: {'id': '1'}
+    Text: None
+    Element: title
+      Attributes: {}
+      Text: The Great Gatsby
+    Element: author
+      Attributes: {}
+      Text: F. Scott Fitzgerald
+    Element: year
+      Attributes: {}
+      Text: 1925
+  Element: book
+    Attributes: {'id': '2'}
+    Text: None
+    Element: title
+      Attributes: {}
+      Text: 1984
+    Element: author
+      Attributes: {}
+      Text: George Orwell
+    Element: year
+      Attributes: {}
+      Text: 1949
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+Notes
+Make sure you have Python installed on your machine.
+You can modify the xml_file_path variable to point to any XML file you want to read.
+The program handles basic error checking for file not found and XML parsing errors.
