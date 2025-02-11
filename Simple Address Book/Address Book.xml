@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addressBook>
+    <contact>
+        <name>John Doe</name>
+        <phone>+1234567890</phone>
+        <email>johndoe@example.com</email>
+    </contact>
+    <contact>
+        <name>Jane Smith</name>
+        <phone>+0987654321</phone>
+        <email>janesmith@example.com</email>
+    </contact>
+    <contact>
+        <name>Emily Johnson</name>
+        <phone>+1122334455</phone>
+        <email>emily.johnson@example.com</email>
+    </contact>
+</addressBook>
